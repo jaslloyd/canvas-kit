@@ -1,6 +1,6 @@
 import {CanvasThemePalette, EmotionCanvasTheme, useTheme} from '@workday/canvas-kit-react/common';
 import {colors} from '@workday/canvas-kit-react/tokens';
-import chroma from 'chroma-js';
+import {getContrast} from 'color2k';
 
 type paletteSelection = Exclude<keyof EmotionCanvasTheme['canvas']['palette'], 'common'>;
 
@@ -11,7 +11,7 @@ interface BackgroundColors {
 }
 
 const isAccessible = (foreground: string, background: string) => {
-  return chroma.contrast(foreground, background) >= 3;
+  return getContrast(foreground, background) >= 3;
 };
 
 const getPaletteColorsFromTheme = (

@@ -2,7 +2,8 @@ import * as React from 'react';
 import {SearchForm} from '../lib/SearchForm';
 import {render, screen, fireEvent} from '@testing-library/react';
 import {searchThemes, SearchTheme} from '../lib/themes';
-import chroma from 'chroma-js';
+// import chroma from 'chroma-js';
+import {toHex} from 'color2k';
 
 describe('SearchForm', () => {
   const cb = jest.fn().mockImplementation((event: Event) => event);
@@ -157,7 +158,7 @@ describe('SearchForm', () => {
     const style = window.getComputedStyle(input);
 
     expect(style.background).toBe(searchThemes[theme].background);
-    expect(chroma(style.color || '').hex()).toBe(searchThemes[theme].color);
+    expect(toHex(style.color || '')).toBe(searchThemes[theme].color);
     expect(style.boxShadow).toBe(searchThemes[theme].boxShadow);
   });
 

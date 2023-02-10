@@ -1,7 +1,7 @@
 import {useThemeRTL} from './useThemeRTL';
 import {CanvasThemePalette, EmotionCanvasTheme} from '@workday/canvas-kit-react/common';
 import {colors, CSSProperties, inputColors, statusColors} from '@workday/canvas-kit-react/tokens';
-import chroma from 'chroma-js';
+import {getContrast} from 'color2k';
 
 type paletteSelection = Exclude<keyof EmotionCanvasTheme['canvas']['palette'], 'common'>;
 interface ContrastColors {
@@ -10,7 +10,7 @@ interface ContrastColors {
 }
 
 const isAccessible = (foreground: string, background: string = colors.frenchVanilla100) => {
-  return chroma.contrast(foreground, background) >= 3;
+  return getContrast(foreground, background) >= 3;
 };
 
 const getPaletteColorsFromTheme = (

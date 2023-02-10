@@ -3,6 +3,7 @@ import {pickForegroundColor} from '@workday/canvas-kit-react/common';
 import chroma from 'chroma-js';
 import * as React from 'react';
 import styled from '@emotion/styled';
+import {toHex} from 'color2k';
 
 import {checkSmallIcon} from '@workday/canvas-system-icons-web';
 import {SystemIcon} from '@workday/canvas-kit-react/icon';
@@ -18,7 +19,7 @@ function compareColors(color1: string, color2: string): boolean {
     return false;
   }
 
-  return chroma(color1).hex() === chroma(color2).hex();
+  return toHex(color1) === toHex(color2);
 }
 
 const Container = styled('div')<ColorSwatchProps>(
